@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const getRouter = (mainRouterPath) => {
-  const basePath = '/test'
+  const basePath = '/portal'
   const routes = [
     // {
     //   path: `${mainRouterPath}${basePath}/Home`,
@@ -18,7 +18,7 @@ const getRouter = (mainRouterPath) => {
     }
   ]
   return new VueRouter({
-    base: '/test',
+    base: '/',
     routes
   })
 }

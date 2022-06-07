@@ -36,13 +36,13 @@ export async function bootstrap () {
   console.log('[vue] vue app bootstraped')
 }
 export async function mount (props) {
-  props.onGlobalStateChange((state, prev) => {
-    // state: 变更后的状态; prev 变更前的状态
-    console.log('vue子应用监听父应用', state, prev)
-  })
-  props.getGlobalState((e) => {
-    console.log('vue子应用初始化获取', e)
-  })
+  // props.onGlobalStateChange((state, prev) => {
+  //   // state: 变更后的状态; prev 变更前的状态
+  //   console.log('vue子应用监听父应用', state, prev)
+  // })
+  // props.getGlobalState((e) => {
+  //   console.log('vue子应用初始化获取', e)
+  // })
   // setTimeout(() => {
   //   props.setMainVuex('portalModule/cm_fullscreen', true)
   //   console.log('重置')
