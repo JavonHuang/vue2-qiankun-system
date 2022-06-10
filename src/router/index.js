@@ -4,17 +4,17 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const getRouter = (mainRouterPath) => {
-  const basePath = '/portal'
+  const basePath = ''
   const routes = [
-    // {
-    //   path: `${mainRouterPath}${basePath}/Home`,
-    //   name: `${mainRouterPath}_center`,
-    //   component: resolve => require(['./../components/Home'], resolve)
-    // },
     {
-      path: `${mainRouterPath}${basePath}/Home`,
+      path: `${mainRouterPath}${basePath}/HelloWorld`,
       name: 'HelloWorld',
       component: resolve => require(['./../components/HelloWorld'], resolve)
+    },
+    {
+      path: `${mainRouterPath}${basePath}/Home`,
+      name: 'home',
+      component: resolve => require(['./../components/Home'], resolve)
     }
   ]
   return new VueRouter({
