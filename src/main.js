@@ -11,7 +11,7 @@ let instance = null
 
 function render (props = {}) {
   const { container } = props
-  const router = getRouter(props.mainRouterPath ? props.mainRouterPath : '')
+  const router = getRouter(props.mainRouterPath ? props.mainRouterPath : '', props.errorRouter)
   // router.beforeEach((to, from, next) => {
   //   console.log(to, from, next)
   //   next()
@@ -43,19 +43,15 @@ export async function bootstrap () {
  * 应用每次进入都会调用 mount 方法，通常我们在这里触发应用的渲染方法
  */
 export async function mount (props) {
+  const param = { system: true }
   props.onGlobalStateChange((state, prev) => {
     // state: 变更后的状态; prev 变更前的状态
-    console.log('vue子应用监听父应用', state, prev)
+    console.log('system son监听', state, prev)
   })
-  // props.setGlobalState('988787')
-  // props.getGlobalState((e) => {
-  //   console.log('vue子应用初始化获取', e)
-  // })
-  // setTimeout(() => {
-  //   props.setMainVuex('portalModule/cm_fullscreen', true)
-  //   console.log('重置')
-  // }, 2000)
   render(props)
+  // 在子应用更新数据，同步到主应用
+  props.setGlobalState(param)
+  console.log('system son初始化获取', props.getGlobalState())
 }
 
 /**
