@@ -5,9 +5,10 @@ import App from './App.vue'
 import getRouter from './router/index'
 
 Vue.config.productionTip = false
-
 let router = null
 let instance = null
+// 主应用中引用，在子应用注册使用
+Vue.use(testlib.default)
 
 function render (props = {}) {
   const { container } = props

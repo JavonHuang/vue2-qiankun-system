@@ -1,15 +1,17 @@
 <template>
-  <div>
+  <div class="my">
     测试打包
   </div>
 </template>
 
 <script>
 export default {
-  name:"my"
+  name: 'my'
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.my{
+  color:red
+}
 </style>
