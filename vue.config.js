@@ -9,7 +9,7 @@ const port = 7101 // dev port
 module.exports = {
   outputDir: 'dist',
   assetsDir: 'static',
-  publicPath: '/',
+  publicPath: './',
   filenameHashing: true,
   devServer: {
     // host: '0.0.0.0',
