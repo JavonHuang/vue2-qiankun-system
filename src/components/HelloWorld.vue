@@ -1,11 +1,11 @@
 <template>
   <div class="hello">
    子应用首页HelloWorld
+    <el-button v-on:click="gotoSubReact">默认按钮</el-button>
   </div>
 </template>
 
 <script>
-// import { mapState } from 'vuex'
 export default {
   // computed: {
   //   // 通过global获取user的信息
@@ -16,11 +16,11 @@ export default {
   // mounted () {
   //   console.log('ce', this.user)
   // },
-  // methods: {
-  //   gotoSubReact () {
-  //     history.pushState(null, 'sub-react', '/sub-react')
-  //   }
-  // }
+  methods: {
+    gotoSubReact () {
+      this.$router.push('/portal/system/Home')
+    }
+  }
 }
 </script>
 
