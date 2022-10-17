@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="system">
     <keep-alive>
     <router-view></router-view>
     </keep-alive>
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
+#system {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

@@ -9,8 +9,7 @@ import ElementUI from 'element-ui'
 Vue.config.productionTip = false
 let router = null
 let instance = null
-// 主应用中引用，在子应用注册使用
-// Vue.use(system.default)
+
 Vue.use(ElementUI)
 function render (props = {}) {
   const { container } = props
@@ -32,6 +31,8 @@ function render (props = {}) {
 // webpack打包公共文件路径
 if (window.__POWERED_BY_QIANKUN__) {
   __webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__
+  // 主应用中引用，在子应用注册使用
+  Vue.use(system.default)
 }
 // 独立运行
 if (!window.__POWERED_BY_QIANKUN__) {

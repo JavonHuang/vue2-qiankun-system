@@ -18,7 +18,7 @@ export default {
   // },
   methods: {
     gotoSubReact () {
-      this.$router.push('/portal/system/Home')
+      window.rootRouter.push({ path: '/portal/personal/home', query: { name: '黄玉超', age: '290' } })
     }
   }
 }
@@ -28,6 +28,7 @@ export default {
 <style scoped lang="scss">
 .hello{
   width: 100%;
+  padding: 10px;
 }
 img{
   width: 100%;
