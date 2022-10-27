@@ -14,6 +14,9 @@ Vue.use(ElementUI)
 function render (props = {}) {
   const { container } = props
   const router = getRouter(props.mainRouterPath ? props.mainRouterPath : '')
+  router.onError((e) => {
+    console.log(e)
+  })
   instance = new Vue({
     router,
     render: h => h(App)
