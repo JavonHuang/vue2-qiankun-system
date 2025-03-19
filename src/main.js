@@ -27,7 +27,7 @@ function render (props = {}) {
 if (window.__POWERED_BY_QIANKUN__) {
   __webpack_public_path__ = window.__INJECTED_PUBLIC_PATH_BY_QIANKUN__
   // 主应用中引用，在子应用注册使用
-  Vue.use(system.default)
+  // Vue.use(system.default)
 }
 // 独立运行
 if (!window.__POWERED_BY_QIANKUN__) {
@@ -40,8 +40,22 @@ if (!window.__POWERED_BY_QIANKUN__) {
  */
 export async function bootstrap () {
   console.log('[vue] vue app bootstraped')
+  const list = [
+    '/ueditor/ueditor.config.js',
+    '/ueditor/ueditor.all.js',
+    '/ueditor/lang/zh-cn/zh-cn.js'
+  ]
+  list.forEach((e) => {
+    loadScript(e)
+  })
 }
 
+const loadScript = (url) => {
+  const scriptDom = document.createElement('script')
+  scriptDom.type = 'text/javascript'
+  scriptDom.src = url
+  document.body.append(scriptDom)
+}
 /**
  * 应用每次进入都会调用 mount 方法，通常我们在这里触发应用的渲染方法
  */

@@ -23,10 +23,17 @@ module.exports = {
     // 跨域
     headers: {
       'Access-Control-Allow-Origin': '*'
+    },
+    proxy: {
+      '/ueditor': {
+        target: 'http://192.168.1.9:7101/',
+        changeOrigin: true
+      }
     }
   },
   // 自定义webpack配置
   configureWebpack: {
+    devtool: "cheap-module-source-map", 
     resolve: {
       alias: {
         '@': resolve('src')

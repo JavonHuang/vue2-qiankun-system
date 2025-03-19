@@ -2,6 +2,7 @@
   <div class="hello">
    子应用首页HelloWorld
     <el-button v-on:click="gotoSubReact">默认按钮</el-button>
+    <div id="test"></div>
   </div>
 </template>
 
@@ -13,9 +14,13 @@ export default {
   //     user: state => state.user
   //   })
   // },
-  // mounted () {
-  //   console.log('ce', this.user)
-  // },
+  mounted () {
+    setTimeout(() => {
+      window.UE.getEditor('test', {
+        autoHeight: false
+      })
+    }, 500)
+  },
   methods: {
     gotoSubReact () {
       window.rootRouter.push({ path: '/portal/personal/home', query: { name: '黄玉超', age: '290' } })
