@@ -1,13 +1,86 @@
 <template>
   <div class="hello">
-   子应用首页HelloWorld
-    <el-button v-on:click="gotoSubReact">默认按钮</el-button>
-    <div id="test"></div>
+    子应用首页HelloWorld
+    <el-button v-on:click="open">开启</el-button>
+    <el-button v-on:click="close">关闭</el-button>
+    <el-table :data="tableData" v-th-table-ctr="tableCtr" border style="width: 100%">
+      <el-table-column v-for="(item, index) in columns" :key="index" :prop="item.prop" :label="item.label">
+         <template slot-scope="scope">
+            <div>{{scope.row[item.prop]}}</div>
+         </template>
+      </el-table-column>
+    </el-table>
   </div>
 </template>
 
 <script>
 export default {
+  data () {
+    return {
+      tableCtr: {
+        init: false,
+        tableExcel: null
+      },
+      columns: [
+        { prop: 'date', label: '日期' },
+        { prop: 'name', label: '姓名' },
+        { prop: 'address', label: '地址' },
+        { prop: 'age', label: '年龄' },
+        { prop: 'heig', label: '身高' },
+        { prop: 'tzhong', label: '体重' }
+      ],
+      tableData: [{
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄',
+        age: 67890,
+        heig: 134678,
+        tzhong: 9078678
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄',
+        age: 32,
+        heig: 565,
+        tzhong: 7878
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1519 弄',
+        age: 4343,
+        heig: 3334,
+        tzhong: 5677
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄',
+        age: 98,
+        heig: 456,
+        tzhong: 12
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄',
+        age: 98,
+        heig: 456,
+        tzhong: 12
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄',
+        age: 98,
+        heig: 456,
+        tzhong: 12
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄',
+        age: 98,
+        heig: 456,
+        tzhong: 12
+      }]
+    }
+  },
   // computed: {
   //   // 通过global获取user的信息
   //   ...mapState('global', {
@@ -15,13 +88,14 @@ export default {
   //   })
   // },
   mounted () {
-    setTimeout(() => {
-      window.UE.getEditor('test', {
-        autoHeight: false
-      })
-    }, 500)
   },
   methods: {
+    open () {
+      this.tableCtr.tableExcel.openSwitch()
+    },
+    close () {
+      this.tableCtr.tableExcel.closeSwitch()
+    },
     gotoSubReact () {
       window.rootRouter.push({ path: '/portal/personal/home', query: { name: '黄玉超', age: '290' } })
     }
@@ -31,11 +105,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.hello{
+.hello {
   width: 100%;
   padding: 10px;
 }
-img{
+
+img {
   width: 100%;
   // height: 1000px;
 }

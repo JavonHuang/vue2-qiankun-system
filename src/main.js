@@ -5,11 +5,12 @@ import App from './App.vue'
 import getRouter from './router/index'
 import 'element-ui/lib/theme-chalk/index.css'
 import ElementUI from 'element-ui'
+import ddd from './tableCtr'
 
 Vue.config.productionTip = false
 let router = null
 let instance = null
-
+Vue.directive(ddd.name, ddd.directive)
 Vue.use(ElementUI)
 function render (props = {}) {
   const { container } = props
