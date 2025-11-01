@@ -14,12 +14,14 @@
 </template>
 
 <script>
+import _ from 'lodash'
 export default {
   data () {
     return {
       tableCtr: {
         init: false,
-        tableExcel: null
+        tableExcel: null,
+        onPaste: this.paste
       },
       columns: [
         { prop: 'date', label: '日期' },
@@ -98,6 +100,14 @@ export default {
     },
     gotoSubReact () {
       window.rootRouter.push({ path: '/portal/personal/home', query: { name: '黄玉超', age: '290' } })
+    },
+    paste (e) {
+      const oldData = _.cloneDeep(this.tableData)
+      const newData = _.cloneDeep(this.tableData)
+      e.forEach(item => {
+        newData[item.targetPoint.rowIndex][this.columns[item.targetPoint.cellIndex].prop] = oldData[item.sourePoint.rowIndex][this.columns[item.sourePoint.cellIndex].prop]
+      })
+      this.tableData = newData
     }
   }
 }

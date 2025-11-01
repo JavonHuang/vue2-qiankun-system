@@ -1,6 +1,7 @@
 export default class TableCanvas {
   constructor (tbodyDom) {
-    const rect = tbodyDom.getBoundingClientRect()
+    this.tbodyDom = tbodyDom
+    const rect = this.tbodyDom.getBoundingClientRect()
     this.canvasDom = document.createElement('canvas')
     this.canvasDom.style.position = 'absolute'
     this.canvasDom.style.pointerEvents = 'none'
@@ -50,7 +51,6 @@ export default class TableCanvas {
         { rowIndex: this.downDom.dataset.rowIndex, cellIndex: this.downDom.dataset.cellIndex },
         { rowIndex: this.enterDom.dataset.rowIndex, cellIndex: this.enterDom.dataset.cellIndex }
       ]
-      console.log(this.range)
     }
 
     // 右上
@@ -59,6 +59,10 @@ export default class TableCanvas {
       this.startY = this.enterDom.dataset.y0 * 1
       this.drawW = this.enterDom.dataset.x * 1 - this.downDom.dataset.x0 * 1
       this.drawH = this.downDom.dataset.y * 1 - this.startY
+      this.range = [
+        { rowIndex: this.enterDom.dataset.rowIndex, cellIndex: this.downDom.dataset.cellIndex },
+        { rowIndex: this.downDom.dataset.rowIndex, cellIndex: this.enterDom.dataset.cellIndex }
+      ]
     }
 
     // 左下
@@ -67,6 +71,10 @@ export default class TableCanvas {
       this.startY = this.downDom.dataset.y0 * 1
       this.drawW = this.downDom.dataset.x * 1 - this.startX
       this.drawH = this.enterDom.dataset.y * 1 - this.startY
+      this.range = [
+        { rowIndex: this.downDom.dataset.rowIndex, cellIndex: this.enterDom.dataset.cellIndex },
+        { rowIndex: this.enterDom.dataset.rowIndex, cellIndex: this.downDom.dataset.cellIndex }
+      ]
     }
 
     // 左上
@@ -75,6 +83,10 @@ export default class TableCanvas {
       this.startY = this.enterDom.dataset.y0 * 1
       this.drawW = this.downDom.dataset.x * 1 - this.startX
       this.drawH = this.downDom.dataset.y * 1 - this.startY
+      this.range = [
+        { rowIndex: this.enterDom.dataset.rowIndex, cellIndex: this.enterDom.dataset.cellIndex },
+        { rowIndex: this.downDom.dataset.rowIndex, cellIndex: this.downDom.dataset.cellIndex }
+      ]
     }
     this.drawFill(this.startX, this.startY, this.drawW, this.drawH)
   }
@@ -87,10 +99,6 @@ export default class TableCanvas {
   }
 
   clearCanvas = () => {
-    if (this.timer) {
-      clearInterval(this.timer)
-      this.timer = null
-    }
     const context = this.canvasDom.getContext('2d')
     context.setLineDash([])
     context.clearRect(0, 0, this.canvasDom.width, this.canvasDom.height)
@@ -109,7 +117,15 @@ export default class TableCanvas {
     this.drawAntLine()
   }
 
+  clearTimer = () => {
+    if (this.timer) {
+      clearInterval(this.timer)
+      this.timer = null
+    }
+  }
+
   remove = () => {
+    this.clearTimer()
     this.canvasDom.remove()
   }
 
